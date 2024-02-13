@@ -25,5 +25,10 @@ namespace HomeAutomationApp.Devices
         {
             isOn = false;
         }
+
+        string IDevice.GetState()
+        {
+            return "Smart Light Is: " + (isOn ? " On" : " Off");
+        }
     }
 }

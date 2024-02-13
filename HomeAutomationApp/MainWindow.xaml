@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeAutomationApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Home Automation System" Height="450" Width="800">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!-- Adjust width as needed -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- Adjust width as needed -->
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <!-- Left StackPanel -->
+            <StackPanel>
+                <TextBlock Text="Light State:" />
+                <TextBlock Text="{Binding LightState}" TextWrapping="Wrap" />
+
+                <TextBlock Text="Air Condition State:" />
+                <TextBlock Text="{Binding AirConditionState}" TextWrapping="Wrap" />
+
+                <TextBlock Text="Outside Temperature:" />
+                <TextBlock Text="{Binding OutsideTemperature}" TextWrapping="Wrap" />
+
+                <TextBlock Text="Current Time:" />
+                <TextBlock Text="{Binding CurrentTime}" TextWrapping="Wrap" />
+            </StackPanel>
+
+            <!-- Right StackPanel -->
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Simulated Outside Temperature:" />
+                <TextBlock Text="{Binding DeviceSettingsViewModel.SimulatedOutsideTemperature}" TextWrapping="Wrap" />
+
+                <Slider Value="{Binding DeviceSettingsViewModel.SimulatedOutsideTemperature, Mode=TwoWay}"
+                Maximum="60" Minimum="-20"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1"/>
+            </StackPanel>
+        </Grid>
 </Window>

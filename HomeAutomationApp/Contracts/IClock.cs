@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomationApp.Contracts
 {
-    public interface IClock
+    public interface IClock : ISensor
     {
         DateTime GetCurrentTime();
     }

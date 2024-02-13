@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeAutomationApp.Contracts
+namespace HomeAutomationApp.AutomationSystem
 {
-    public interface ISensor
+    public class AbstractSystemState
     {
-        //object GetValue();
-
-        String GetState();
     }
 }

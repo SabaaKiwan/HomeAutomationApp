@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HomeAutomationApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace HomeAutomationApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = App.GetService<HomeAutomationViewModel>();
         }
     }
 }

@@ -20,5 +20,10 @@ namespace HomeAutomationApp.Devices
         {
             return time ?? DateTime.Now;
         }
+
+        public string GetState()
+        {
+            return "Smart Clock Is Now At: " + GetCurrentTime().ToString("T");
+        }
     }
 }

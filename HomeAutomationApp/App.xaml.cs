@@ -1,6 +1,7 @@
-﻿using HomeAutomationApp.AutomationSystem;
+﻿using HomeAutomationApp.AutomationSystem.HomeAutomationSystem;
 using HomeAutomationApp.Contracts;
 using HomeAutomationApp.Devices;
+using HomeAutomationApp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -21,6 +22,15 @@ namespace HomeAutomationApp
     {
         private IHost host;
 
+        public static T GetService<T>() where T : class
+        {
+            if ((App.Current as App)!.host.Services.GetService(typeof(T)) is not T service)
+            {
+                throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+            }
+
+            return service;
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -28,13 +38,26 @@ namespace HomeAutomationApp
             host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    // Register your services
-                    services.AddSingleton<IThermostat, SimulatedThermostat>();
-                    services.AddSingleton<IDevice, SimulatedLight>();
-                    services.AddSingleton<IClock, SimulatedClock>();
-                    services.AddSingleton<IAirConditionDevice, SimulatedAirCondition>();
-                    
-                    services.AddSingleton< HomeAutomationSystem>();
+                    // Register your SimulatedDevices
+                    services.AddSingleton<SimulatedThermostat>();
+                    services.AddSingleton<SimulatedLight>();
+                    services.AddSingleton<SimulatedClock>();
+                    services.AddSingleton<SimulatedAirCondition>();
+
+
+                    // Register your System
+                    services.AddSingleton<HomeAutomationSystem>();
+
+                    // Register your Devices
+                    services.AddSingleton<IThermostat>(provider => provider.GetRequiredService<SimulatedThermostat>());
+                    services.AddSingleton<IDevice>(provider => provider.GetRequiredService<SimulatedLight>());
+                    services.AddSingleton<IClock>(provider => provider.GetRequiredService<SimulatedClock>());
+                    services.AddSingleton<IAirConditionDevice>(provider => provider.GetRequiredService<SimulatedAirCondition>());
+
+
+                    // Views and ViewModels
+                    services.AddTransient<SimulatedDeviceSettingsViewModel>();
+                    services.AddTransient<HomeAutomationViewModel>();
 
                     // Other services and configurations...
                 })

@@ -10,5 +10,7 @@ namespace HomeAutomationApp.Contracts
     {
         void TurnOn();
         void TurnOff();
+
+        string GetState();
     }
 }

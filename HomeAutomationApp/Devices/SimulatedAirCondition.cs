@@ -46,5 +46,15 @@ namespace HomeAutomationApp.Devices
         }
 
         public AirConditionMode GetAirConditionMode() { return airConditionMode; }
+
+        string IDevice.GetState()
+        {
+            return "Smart Air Condition Is " +
+                (isOn ?
+                "Running In Mode " + airConditionMode.ToString() +
+                " With Target Temperature " + targetTemprature.ToString()
+
+                : " Off");
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomationApp.Contracts
 {
-    public interface IThermostat
+    public interface IThermostat :ISensor
     {
         double GetTemperature(); 
     }

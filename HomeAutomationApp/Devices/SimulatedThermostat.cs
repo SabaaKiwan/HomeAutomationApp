@@ -11,6 +11,12 @@ namespace HomeAutomationApp.Devices
     {
         private double temperature = 0;
 
+        public SimulatedThermostat()
+        {
+
+            Console.WriteLine("SimulatedThermostat");
+        }
+
         public void SetTemperature(double temperature)
         {
             this.temperature = temperature;
@@ -20,5 +26,11 @@ namespace HomeAutomationApp.Devices
         {
             return temperature;
         }
+
+        public string GetState()
+        {
+            return "Smart Thermostat Reads " + temperature.ToString() + " Degree";
+        }
+
     }
 }
