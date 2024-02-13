@@ -11,10 +11,7 @@ namespace HomeAutomationApp.Devices
     {
         private bool isOn = false;
 
-        public bool GetState()
-        {
-            return isOn;
-        }
+        public bool IsOn => isOn;
 
         public void TurnOff()
         {
@@ -23,7 +20,7 @@ namespace HomeAutomationApp.Devices
 
         public void TurnOn()
         {
-            isOn = false;
+            isOn = true;
         }
 
         string IDevice.GetState()
